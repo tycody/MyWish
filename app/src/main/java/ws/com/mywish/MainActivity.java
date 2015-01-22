@@ -1,23 +1,50 @@
 package ws.com.mywish;
 
+import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.GridView;
+import android.widget.HorizontalScrollView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
+
+    private ItemAdapter adapter;
+    private List<WishlistItem> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String temp12;
+
+
+        items = new ArrayList<WishlistItem>();
+
+        makeExamples(items);
+
+
+        adapter = new ItemAdapter(this, items);
+
+
+        GridView grid = (GridView) findViewById(R.id.gridview);
+
+        grid.setAdapter(adapter);
+
     }
 
-protected void asd() {
-String asd = "1233";
-}
+    private void makeExamples(List<WishlistItem> list) {
+        for(int i = 0; i < 10; i++) {
+            WishlistItem item = new WishlistItem(i, "Item no " + i, "url: " + i + "RAND");
+            list.add(item);
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
