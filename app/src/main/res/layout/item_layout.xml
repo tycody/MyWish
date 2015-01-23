@@ -12,12 +12,11 @@
         android:id="@+id/maintext"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="123"
+        android:text="There was a problem loading item"
         android:textSize="20sp"
         android:textStyle="normal"
         android:gravity="center"
         android:textColor="#aaaaaa"
-
         >
     </TextView>
 

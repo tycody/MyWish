@@ -1,11 +1,13 @@
 package ws.com.mywish;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.HorizontalScrollView;
 
@@ -23,19 +25,24 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         items = new ArrayList<WishlistItem>();
-
         makeExamples(items);
-
-
         adapter = new ItemAdapter(this, items);
-
-
         GridView grid = (GridView) findViewById(R.id.gridview);
-
         grid.setAdapter(adapter);
 
+
+
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(view.getContext(), WishItems.class);
+                i.putExtra("ItemId", position);
+                i.putExtra("itemName", items.get(position).getName());
+                startActivity(i);
+
+            }
+        });
     }
 
     private void makeExamples(List<WishlistItem> list) {
@@ -43,6 +50,7 @@ public class MainActivity extends Activity {
             WishlistItem item = new WishlistItem(i, "Item no " + i, "url: " + i + "RAND");
             list.add(item);
         }
+
     }
 
     @Override
