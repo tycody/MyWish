@@ -3,13 +3,18 @@ package Helpers;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import java.io.InputStream;
+
+import ws.com.mywish.R;
 
 /**
  * Created by ziggyzaggy on 23/01/2015.
@@ -50,6 +55,11 @@ public class AsyncImageFetcher extends AsyncTask<String, Void, Bitmap> {
 
     protected void onPostExecute(Bitmap result){
         bmView.setImageBitmap(result);
+
+
+
+        Animation anim = AnimationUtils.loadAnimation(context, R.anim.fade_in);
+        bmView.startAnimation(anim);
         if(dialog.isShowing())
             dialog.hide();
     }
