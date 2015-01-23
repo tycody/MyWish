@@ -9,7 +9,7 @@ import android.widget.TextView;
 import Helpers.AsyncImageFetcher;
 
 /**
- * Created by kristjan on 23/01/2015.
+ * Created by ziggyzaggy on 23/01/2015.
  */
 public class WishItems extends Activity{
 
