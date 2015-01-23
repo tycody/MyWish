@@ -29,12 +29,15 @@ public class AsyncImageFetcher extends AsyncTask<String, Void, Bitmap> {
         context = activity;
         dialog = new ProgressDialog(context);
     }
+
+    //impletement if needed
+    //(show progress dialogs etc, do anything before executing the task)
     protected void onPreExecute(){
        /* dialog.setMessage("Please wait");
         dialog.show();*/
     }
 
-
+    //task itself
     @Override
     protected Bitmap doInBackground(String... urls) {
         String from = urls[0];
@@ -52,14 +55,12 @@ public class AsyncImageFetcher extends AsyncTask<String, Void, Bitmap> {
 
         return bm;
     }
-
+    //put acquired bitmap as the source, animate the whole thing
     protected void onPostExecute(Bitmap result){
         bmView.setImageBitmap(result);
-
-
-
         Animation anim = AnimationUtils.loadAnimation(context, R.anim.fade_in);
         bmView.startAnimation(anim);
+
         if(dialog.isShowing())
             dialog.hide();
     }
