@@ -59,7 +59,7 @@ public class AsyncImageFetcher extends AsyncTask<String, Void, Bitmap> {
     protected void onPostExecute(Bitmap result){
         bmView.setImageBitmap(result);
         Animation anim = AnimationUtils.loadAnimation(context, R.anim.fade_in);
-        bmView.startAnimation(anim);
+       // bmView.startAnimation(anim); //set animation
 
         if(dialog.isShowing())
             dialog.hide();

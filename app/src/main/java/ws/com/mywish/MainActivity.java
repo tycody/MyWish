@@ -1,15 +1,15 @@
 package ws.com.mywish;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.HorizontalScrollView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +36,12 @@ public class MainActivity extends Activity {
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(view.getContext(), WishItems.class);
+                final Intent i = new Intent(view.getContext(), WishItemsView.class);
                 i.putExtra("ItemId", position);
                 i.putExtra("itemName", items.get(position).getName());
+
                 startActivity(i);
+
 
             }
         });
@@ -47,7 +49,7 @@ public class MainActivity extends Activity {
 
     private void makeExamples(List<WishlistItem> list) {
         for(int i = 0; i < 10; i++) {
-            WishlistItem item = new WishlistItem(i, "Item no " + i, "url: " + i + "RAND");
+            WishlistItem item = new WishlistItem(i, "Wishlist  no " + i, "url: " + i + "RAND");
             list.add(item);
         }
 
